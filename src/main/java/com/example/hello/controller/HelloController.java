@@ -2,6 +2,8 @@ package com.example.hello.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/get-api")
 public class HelloController {
@@ -29,6 +31,19 @@ public class HelloController {
     @GetMapping("/request1")
     public String getVariableV3(@RequestParam String name, @RequestParam String email, @RequestParam String organization) {
         return String.format("name: %s, email: %s, organization: %s", name, email, organization);
+    }
+
+    @GetMapping("/request1")
+    public String getVariableV4(@RequestParam String name, @RequestParam String email, @RequestParam String organization) {
+        return String.format("name: %s, email: %s, organization: %s", name, email, organization);
+    }
+
+    @GetMapping("/request2")
+    public String getVariableV5(@RequestParam Map<String, String> param) {
+        param.entrySet().forEach((map) -> {
+            System.out.printf("key: %s, value: %s\n",map.getKey(), map.getValue());
+        });
+        return "request2 호출";
     }
 
 }
