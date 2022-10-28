@@ -41,4 +41,9 @@ public class UserDao {
         return jdbcTemplate.update(sql);
     }
 
+    public int deleteById(String id) {
+        String sql = "DELETE FROM users.id=?";
+        return jdbcTemplate.update(sql, id);
+    }
+
 }
