@@ -1,6 +1,7 @@
 package com.example.hello.dao;
 
 import com.example.hello.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class UserDao {
 
     public void save(User user) {
         String sql = "INSERT INTO users(id, name, password, email) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql);
+        jdbcTemplate.update(sql, user.getId(), user.getName(), user.getEmail(), user.getPassword());
     }
 
     public User findById(String id)  {
@@ -46,4 +47,7 @@ public class UserDao {
         return jdbcTemplate.update(sql, id);
     }
 
+    public static void main(String[] args) {
+
+    }
 }
