@@ -18,7 +18,7 @@ public class UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void save() {
+    public void save(User user) {
         String sql = "INSERT INTO users(id, name, password, email) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql);
     }
@@ -36,9 +36,9 @@ public class UserDao {
         });
     }
 
-    public void deleteAll() {
+    public int deleteAll() {
         String sql = "DELETE FROM users";
-        jdbcTemplate.update(sql);
+        return jdbcTemplate.update(sql);
     }
 
 }
