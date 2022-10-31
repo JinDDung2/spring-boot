@@ -1,13 +1,14 @@
 package com.example.hello.parser;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadLineContext<T> {
+import java.io.*;
 
+
+public class ReadLineContext<T> {
     private Parser<T> parser;
 
     public ReadLineContext(Parser<T> parser) {
@@ -16,17 +17,18 @@ public class ReadLineContext<T> {
 
     public List<T> readByLine(String filename) throws IOException {
         List<T> result = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "utf-8"));
         String str;
-        while ((str = reader.readLine()) != null) {
+
+        br.readLine();
+        while ((str = br.readLine()) != null) {
             try {
                 result.add(parser.parse(str));
             } catch (Exception e) {
-                System.out.printf("파싱중 문제가 생겨 이 라인은 넘어갑니다. 파일번호:%s\n", str.substring(0, 1));
+                System.out.printf("파싱중 문제가 생겨 이 라인은 넘어갑니다. 파일내용:%s\n", str.substring(0,20));
             }
         }
-
-        reader.close();
+        br.close();
         return result;
     }
 

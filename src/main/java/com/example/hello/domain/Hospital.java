@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter @Setter
 public class Hospital {
-
     private int id;
     private String openServiceName;
     private int openLocalGovernmentCode;
@@ -29,9 +28,25 @@ public class Hospital {
     private int totalNumberOfBeds;
     private float totalAreaSize;
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Hospital{" +
+                "id=" + id +
+                ", openServiceName='" + openServiceName + '\'' +
+                ", openLocalGovernmentCode=" + openLocalGovernmentCode +
+                ", managementNumber='" + managementNumber + '\'' +
+                ", licenseDate=" + licenseDate +
+                ", businessStatus=" + businessStatus +
+                ", businessStatusCode=" + businessStatusCode +
+                ", phone='" + phone + '\'' +
+                ", fullAddress='" + fullAddress + '\'' +
+                ", roadNameAddress='" + roadNameAddress + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
+                ", businessTypeName='" + businessTypeName + '\'' +
+                ", healthcareProviderCount=" + healthcareProviderCount +
+                ", patientRoomCount=" + patientRoomCount +
+                ", totalNumberOfBeds=" + totalNumberOfBeds +
+                ", totalAreaSize=" + totalAreaSize +
+                '}';
+    }
 }
