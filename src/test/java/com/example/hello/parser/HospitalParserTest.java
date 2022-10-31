@@ -24,7 +24,7 @@ class HospitalParserTest {
     void name() throws IOException {
         String filename = "/Users/jinhyuck/Downloads/전국병의원정보.csv";
         List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
-        System.out.println("hospitals.size = " + hospitals.size());
+//        System.out.println("hospitals.size = " + hospitals.size());
         assertTrue(hospitals.size() > 10000);
         assertTrue(hospitals.size() > 100000);
     }
