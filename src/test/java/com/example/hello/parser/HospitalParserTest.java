@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootApplication
+@SpringBootTest
 class HospitalParserTest {
 
     @Autowired
@@ -22,9 +23,13 @@ class HospitalParserTest {
 
     @Test
     void name() throws IOException {
-        String filename = "/Users/jinhyuck/Downloads/전국병의원정보.csv";
+        String filename = "/Users/jinhyuck/Downloads/전국 병의원 정보.csv";
+        /*ReadLineContext<Hospital> hospitalReadLineContext1 = new ReadLineContext<>(new HospitalParser());
+        List<Hospital> list = hospitalReadLineContext1.readByLine(filename);
+        System.out.println("list.size = " + list.size());*/
+
         List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
-//        System.out.println("hospitals.size = " + hospitals.size());
+        System.out.println("hospitals.size = " + hospitals.size());
         assertTrue(hospitals.size() > 10000);
         assertTrue(hospitals.size() > 100000);
     }
