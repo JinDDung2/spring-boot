@@ -69,5 +69,8 @@ class HospitalParserTest {
         hospitalDao.save(h1);
         Hospital findHospital = hospitalDao.findById(1);
         System.out.println(findHospital.getLicenseDate());
+        assertEquals(1, hospitalDao.getCount());
+        hospitalDao.deleteAll();
+        assertEquals(0, hospitalDao.getCount());
     }
 }
