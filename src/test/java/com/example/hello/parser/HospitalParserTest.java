@@ -63,13 +63,15 @@ class HospitalParserTest {
 
     @Test
     @DisplayName("save가 잘 되는지")
-    void save() {
+    void saveAndDeleteAndGetCount() {
         HospitalParser hp = new HospitalParser();
         Hospital h1 = hp.parse(lineFirst);
         hospitalDao.save(h1);
         Hospital findHospital = hospitalDao.findById(1);
         System.out.println(findHospital.getLicenseDate());
         assertEquals(1, hospitalDao.getCount());
+        assertEquals(LocalDateTime.of(1999, 06, 12, 0, 0, 0), findHospital.getLicenseDate());
+        assertEquals(52.29f, findHospital.getTotalAreaSize());
         hospitalDao.deleteAll();
         assertEquals(0, hospitalDao.getCount());
     }
