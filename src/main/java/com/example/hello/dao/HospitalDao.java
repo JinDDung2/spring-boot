@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -63,8 +64,13 @@ public class HospitalDao {
         template.update(sql);
     }
 
-    public void deleteById(int id) {
-        String sql = "DELETE FROM nation_wide_hospitals.id=?";
-        template.update(sql, id);
+    public int getCount() {
+        String sql = "SELECT count(*) FROM nation_wide_hospitals";
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public List<Hospital> getAll() {
+        String sql = "SELECT * FROM nation_wide_hospitals ORDER BY id";
+        return template.query(sql, hospitalRowMapper());
     }
 }
