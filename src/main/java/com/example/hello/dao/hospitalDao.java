@@ -6,21 +6,26 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
-
 @Component
 @RequiredArgsConstructor
 public class hospitalDao {
 
-    private final DataSource dataSource;
     private final JdbcTemplate template;
 
     public void save(Hospital hospital) {
-        String sql = "INSERT INTO nation_wide_hospitals(id, openServiceName, openLocalGovernmentCode, managementNumber" +
-                "licenseDate, businessStatus, businessStatusCode, phone, fullAddress, roadNameAddress, hospitalName, " +
-                "businessTypeName, healthcareProviderCount, patientRoomCount, totalNumberOfBeds, totalAreaSize) VALUES (" +
-                "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(sql);
+        String sql = "INSERT INTO nation_wide_hospitals(id, open_service_name, open_local_government_code, manegement_number, license_date, business_state, business_status_code, phone, full_address, road_name_address, hospital_name, business_type_name, healthcare_provider_count, patient_room_count, total_number_of_beds, total_area_size)" +
+                "VALUES (?, ?, ?," +
+                " ?, ?, ?," +
+                " ?, ?, ?," +
+                " ?, ?, ?," +
+                " ?, ?, ?," +
+                " ?)";
+        template.update(sql, hospital.getId(), hospital.getOpenServiceName(), hospital.getOpenLocalGovernmentCode(),
+                hospital.getManagementNumber(), hospital.getLicenseDate(), hospital.getBusinessStatus(),
+                hospital.getBusinessStatusCode(), hospital.getPhone(), hospital.getFullAddress(),
+                hospital.getRoadNameAddress(), hospital.getHospitalName(), hospital.getBusinessTypeName(),
+                hospital.getHealthcareProviderCount(), hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(),
+                hospital.getTotalAreaSize());
     }
 
     /*public Hospital findById(String id) {
