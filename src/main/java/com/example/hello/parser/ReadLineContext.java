@@ -17,7 +17,7 @@ public class ReadLineContext<T> {
 
     public List<T> readByLine(String filename) throws IOException {
         List<T> result = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "utf-8"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "euc-kr"));
         String str;
 
         br.readLine();
