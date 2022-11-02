@@ -18,7 +18,7 @@ class ReadLineContextTest {
     @Autowired
     HospitalDao hospitalDao;
 
-    @Test
+    /*@Test
     // 20분 걸림 (10만개조금넘개 넣는데 이렇게오래걸림)
     void saveData() throws IOException {
         hospitalDao.deleteAll();
@@ -28,5 +28,5 @@ class ReadLineContextTest {
             hospitalDao.save(hospital);
         }
         assertEquals(hospitals.size(), hospitalDao.getCount());
-    }
+    }*/
 }
