@@ -32,7 +32,7 @@ public class HospitalDao {
     }
 
     public Hospital findById(int id) {
-        String sql = "SELECT * FROM nation_wide_hospitals ORDER BY nation_wide_hospitals.id=?";
+        String sql = "SELECT * FROM nation_wide_hospitals WHERE nation_wide_hospitals.id=?";
         return template.queryForObject(sql, hospitalRowMapper(), id);
     }
 
