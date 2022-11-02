@@ -19,6 +19,7 @@ class ReadLineContextTest {
     HospitalDao hospitalDao;
 
     @Test
+    // 20분 걸림 (10만개조금넘개 넣는데 이렇게오래걸림)
     void saveData() throws IOException {
         hospitalDao.deleteAll();
         String filename = "/Users/jinhyuck/Downloads/fulldata_01_01_02_P_의원.csv";
