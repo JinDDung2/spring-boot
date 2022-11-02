@@ -2,7 +2,7 @@ package com.example.hello.controller;
 
 import com.example.hello.dao.UserDao;
 import com.example.hello.domain.User;
-import io.swagger.models.auth.In;
+import com.example.hello.domain.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,26 @@ public class UserController {
         return "Welcome our pages";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/{id}")
+    public ResponseEntity<User> get(@PathVariable String id) {
+        try {
+            User user = this.userDao.findById(id);
+            return ResponseEntity.ok()
+                    .body(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Integer> add(@RequestBody UserDto userDto) {
+        User user = new User(userDto.getId(), userDto.getName(), userDto.getPassword(), userDto.getEmail());
+        return ResponseEntity
+                .ok()
+                .body(userDao.save(user));
+    }
+
+    @PostMapping("/user")
     public User addAndGet() {
         userDao.save(new User("0", "Heo", "Jin", "hyuck@naver.com"));
         log.info("addAndGet 호출합니다.");
